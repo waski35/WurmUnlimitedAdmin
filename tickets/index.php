@@ -1,5 +1,6 @@
 <?php
 $page = "ticket";
+$rootPath = "..";
 require("../header.php");
 ?>
   <div class="content-wrapper">
@@ -36,8 +37,8 @@ require("../header.php");
       </div>
     </section>
   </div>
-  
-  <script src="<?php echo $application["rootPath"]; ?>assets/vendors/listjs/list.min.js"></script>
+
+  <script src="<?php echo $rootPath; ?>/assets/vendors/listjs/list.min.js"></script>
 
   <script>
     $(document).ready(function() {

@@ -10,8 +10,8 @@ The following programs and modules are required to run Wurm Unlimited Admin
 - LAMP/WAMP, Nginx, or UniServer Zero XI running PHP 5.5.0 or higher
 - Ability to change php.ini to allow the extension: php_pdo_sqlite.dll
 - Wurm Unlimited Server
-- [WUAHelper](https://github.com/PrabhdeepSingh/WUAHelper) - Used for RMI
-- [WuaMod](https://github.com/PrabhdeepSingh/WuaMod) - Used for adding custom methods to RMI
+- [WUAHelper](https://github.com/PrabhdeepSingh/WUAHelper) - Used for RMI (INCLUDED in the release zip)
+- [WuaMod](https://github.com/PrabhdeepSingh/WuaMod) - Used for adding custom methods to RMI (INCLUDED in the release zip)
 
 # Installation
 #### Download
@@ -27,7 +27,12 @@ For this software to work you need to enable the php_pdo_sqlite extension as it 
 #### Application configuration
 This is a basic configuration / setup guide on getting this software up and running on your host.
 - Navigate to the `includes` folder and open `config.php` with your favorite text editor
-- Change the `rootPath` to your website address
+- Add your server info into the `$server` array
+  - `absolutePath` - Absolute path to your world directory
+  - `serverId` - Id of the server which can be found on the `Wurm Unlimited Server launcher` under the `Local Server` tab
+  - `ip` - Server internal IP address
+  - `port` - RMI port
+  - `password` - Intra server password / RMI password
 
 #### Wurm Unlimited configuration
 To interact with your WU server you need to enable RMI on it, and to do that you need to edit `wurm.ini` file

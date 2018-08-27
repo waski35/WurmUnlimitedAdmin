@@ -16,8 +16,33 @@ if(!empty($_POST))
 	{
 		$response["success"] = true;
 
-    $_SESSION["userData"] = array("username" => $_POST["username"], "ID" => $loginCheck["ID"], "level" => $loginCheck["level"], "user_friendly_level" => $loginCheck["user_friendly_level"]);
-    $_SESSION['accountLoggedinTime'] = time();
+		$_SESSION["userData"] = array("username" => $_POST["username"], "ID" => $loginCheck["ID"], "level" => $loginCheck["level"], "user_friendly_level" => $loginCheck["user_friendly_level"]);
+		
+		// Get servers
+		require(dirname(__FILE__) . "/../../classes/class.Server.inc.php");
+		require(dirname(__FILE__) . "/../../includes/config.php");
+
+		if(count($servers) > 1)
+		{
+			$serverList = array();
+
+			for($i = 0; $i < count($servers); $i++)
+			{
+				$server = new SERVER($i);
+				array_push($serverList, array("indexInArray" => $i, "name" => $server->GetServerName($servers[$i]["serverId"]), "id" => $servers[$i]["serverId"], "url" => "../../?server=" . $i));
+			}
+
+			$_SESSION["serverList"] = $serverList;
+			$response["message"] = "redirect";
+		}
+		else
+		{
+			$server = new SERVER(0);
+			$_SESSION["userData"]["server"] = array("indexInArray" => 0, "name" => $server->GetServerName($servers[0]["serverId"]), "id" => $servers[0]["serverId"]);
+			$_SESSION["serverList"] = array(array("indexInArray" => 0, "name" => $server->GetServerName($servers[0]["serverId"]), "id" => $servers[0]["serverId"], "url" => "../../?server=0"));
+		}
+
+		$response["info"] = $_SESSION["serverList"];
 
 	}
 	else
